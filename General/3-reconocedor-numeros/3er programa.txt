@@ -1,0 +1,54 @@
+Quiero que en el directorio "3-reconocedor-numeros" desarrollar lo que se describe, agrega tambien un readme para entender completamente su funcionamiento, ya que al momento de que me lo revisen debo de ser capaz de realizar modificaciones en tiempo real sin tu ayuda.
+Debes lograrlo sin emplear librerias más que tkinter, tk y ttk para los visuales de la interfaz.
+
+1. Carga y Visualización de Imagen
+	•	Formato soportado: BMP de 24 bits (RGB).
+	•	Lectura: Se almacenan los píxeles en un arreglo con valores RGB.
+	•	Visualización: Se renderiza en una ventana de 650x450 píxeles, con escalado proporcional para ajustar la imagen.
+
+⸻
+
+⸻
+
+3. Segmentación de Regiones (detección de dígitos)
+	•	Algoritmo: Búsqueda en anchura (BFS implementado sin librerias).
+	•	Criterio: Identifica regiones conectadas de píxeles con valor 1 (negros).
+	•	Conectividad: 4 direcciones (arriba, abajo, izquierda, derecha).
+	•	Salida por región:
+	•	Matriz binaria de la región.
+	•	Límites (minX, maxX, minY, maxY).
+	•	Filtrado de ruido: Se descartan regiones < 5x5 píxeles.
+
+⸻
+
+4. Normalización
+	•	Reescalado a matriz de 10x10 píxeles.
+	•	Método: Interpolación bilineal sobre la región original.
+	•	Umbralización posterior: Se binariza con umbral 0.5 → valores 0 o 1 (blanco y negro - fondo y numeros posibles).
+	•	Objetivo: Estandarizar entrada para comparación.
+
+⸻
+
+5. Reconocimiento de Dígitos
+	•	Base de datos: 10 patrones binarios 10x10 (uno por dígito del 0 al 9).
+	•	Comparación:
+	•	Se calcula la distancia de Hamming (número de bits diferentes - sin librerias).
+	•	Se selecciona el patrón con menor distancia como predicción del dígito.
+
+⸻
+
+6. Visualización de Resultados
+	•	Imagen mostrada: Versión binarizada (foreground negro, background blanco).
+	•	Rectángulos: Dibujados en verde alrededor de cada región detectada como numero posible.
+	•	Texto (dígito reconocido): Mostrado en rojo, centrado sobre cada región.
+	•	Ajuste automático: Para evitar que los textos se salgan de la ventana.
+
+⸻
+
+🔧 Requisitos Técnicos Clave:
+	•	Manipulación de imágenes BMP.
+	•	Conversión del BMP a escala de grises → Binario.
+	•	Implementación de BFS para segmentación.
+	•	Interpolación bilineal para reescalado.
+	•	Cálculo de distancia de Hamming.
+	•	Renderizado 2D con superposición de elementos visuales.
